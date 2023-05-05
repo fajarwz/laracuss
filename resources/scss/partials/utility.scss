@@ -1,0 +1,54 @@
+.h-32px {
+    height: 32px;
+}
+
+.navbar-nav {
+    .nav-link.active {
+        color: $white;
+        font-weight: bold;
+    }
+
+    .nav-link {
+        color: $white;
+
+        &:hover {
+            color: $gray-200;
+        }
+    }
+}
+
+.nav-item {
+    padding-left: 0;
+    padding-right: 0;
+}
+@include media-breakpoint-up(lg) {
+    .nav-item {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+.btn-primary-white {
+    background-color: $white;
+    color: $primary;
+    border-radius: 50px;
+    padding: 10px 24px;
+    min-width: 128px;
+
+    &:hover {
+        background-color: $gray-100;
+        color: $primary;
+    }
+}
+
+.btn-primary {
+    background-color: $blue;
+    color: $white;
+    border-radius: 50px;
+    padding: 10px 24px;
+    min-width: 128px;
+
+    &:hover {
+        color: $white;
+    }
+}
