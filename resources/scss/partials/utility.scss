@@ -52,3 +52,22 @@
         color: $white;
     }
 }
+
+.btn-secondary {
+    background-color: $white;
+    border-color: $blue;
+    color: $blue;
+    border-radius: 50px;
+    padding: 10px 24px;
+    min-width: 128px;
+
+    &:hover {
+        color: $white;
+        background-color: $primary;
+        border-color: $primary;
+    }
+}
+
+.h-315px {
+    height: 315px;
+}

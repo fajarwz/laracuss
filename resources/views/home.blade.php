@@ -46,6 +46,19 @@
               </div>
             </div>
           </nav>
+          <section class="container hero">
+            <div class="row align-items-center h-100">
+              <div class="col-12 col-lg-6">
+                <h1>The Laravel<br />Community Forum</h1>
+                <p class="mb-4">Empowering th Laravel Community to connect, share and learn</p>
+                <a href="#" class="btn btn-primary me-2 mb-2 mb-lg-0">Sign Up</a>
+                <a href="#" class="btn btn-secondary mb-2 mb-lg-0">Join Discussions</a>
+              </div>
+              <div class="col-12 col-lg-6 h-315px order-first order-lg-last mb-3 mb-lg-0">
+                <img class="hero-image float-lg-end" src="{{ url('assets/images/hero-image.png') }}" alt="">
+              </div>
+            </div>
+          </section>
 
           <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     </body>
