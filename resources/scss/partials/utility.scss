@@ -75,3 +75,53 @@
 .min-h-372px {
     min-height: 372px;
 }
+
+.bg-gray {
+    background-color: $gray-100;
+}
+
+.py-80px {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.card {
+    border: none;
+    border-radius: 20px;
+    padding: 24px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.color-gray {
+    color: $gray-500;
+}
+
+.card-avatar-sm {
+    width: 18px;
+    height: 18px;
+}
+
+.text-bg-light {
+    &:hover {
+        color: $primary !important;
+    }
+}
+
+.avatar-sm-wrapper {
+    height: 18px;
+    width: 18px;
+}
+
+.avatar {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.fs-12px {
+    font-size: 12px;
+}
