@@ -18,8 +18,8 @@
             <div class="d-flex flex-column">
               <p class="fw-bold fs-5 text-white">Links</p>
               <ul class="list-unstyled">
-                <li class="text-white mb-2"><a href="#">Home</a></li>
-                <li class="text-white mb-2"><a href="#">Discussions</a></li>
+                <li class="text-white mb-2"><a href="{{ route('home') }}">Home</a></li>
+                <li class="text-white mb-2"><a href="{{ route('discussions.index') }}">Discussions</a></li>
                 <li class="text-white mb-2"><a href="#">About Us</a></li>
               </ul>
             </div>
