@@ -43,6 +43,16 @@
                                                 <small>Edit</small>
                                             </a>
                                         </span>
+
+                                        <form action="{{ route('discussions.destroy', $discussion->slug) }}"
+                                            class="d-inline-block lh-1" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="color-gray btn p-0 lh-1"
+                                                id="delete-discussion">
+                                                <small class="card-discussion-delete-btn">Delete</small>
+                                            </button>
+                                        </form>
                                         @endif
                                     </div>
                                     <div class="col-5 col-lg-3 d-flex">
@@ -207,7 +217,13 @@
                     $('#discussion-like').data('liked', !isLiked);
                 }
             })
-        })
-    })
+        });
+
+        $('#delete-discussion').click(function(event) {
+            if (!confirm('Delete this discussion?')) {
+                event.preventDefault();
+            }
+        });
+    });
 </script>
 @endsection
