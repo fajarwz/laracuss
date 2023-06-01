@@ -17,6 +17,10 @@ Route::middleware('auth')->group(function () {
     Route::namespace('App\Http\Controllers')->group(function() {
         Route::resource('discussions', DiscussionController::class)
             ->only(['create', 'store', 'edit', 'update', 'destroy']);
+        Route::post('discussions/{discussion}/like', 'LikeController@discussionLike')
+            ->name('discussions.like.like');
+        Route::post('discussions/{discussion}/unlike', 'LikeController@discussionUnlike')
+            ->name('discussions.like.unlike');
     });
 });
 
@@ -38,10 +42,6 @@ Route::namespace('App\Http\Controllers\Auth')->group(function() {
     Route::get('sign-up', 'SignUpController@show')->name('auth.sign-up.show');
     Route::post('sign-up', 'SignUpController@signUp')->name('auth.sign-up.sign-up');
 });
-
-Route::get('discussions/lorem', function () {
-    return view('pages.discussions.show');
-})->name('discussions.show');
 
 Route::get('answers/1', function () {
     return view('pages.answers.form');

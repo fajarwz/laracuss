@@ -93,9 +93,23 @@ class DiscussionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        // dapatkan discussion berdasarkan slug, dan eager load user dan categorynya
+        // get semua category
+        // return response
+
+        $discussion = Discussion::with(['user', 'category'])->where('slug', $slug)->first();
+
+        $notLikedImage = url('assets/images/like.png');
+        $likedImage = url('assets/images/liked.png');
+
+        return response()->view('pages.discussions.show', [
+            'discussion' => $discussion,
+            'categories' => Category::all(),
+            'likedImage' => $likedImage,
+            'notLikedImage' => $notLikedImage,
+        ]);
     }
 
     /**
