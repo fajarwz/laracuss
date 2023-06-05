@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Discussion;
+use App\Models\Answer;
 use App\Http\Requests\Discussion\StoreRequest;
 use App\Http\Requests\Discussion\UpdateRequest;
 use Str;
@@ -99,6 +100,9 @@ class DiscussionController extends Controller
         // dapatkan discussion berdasarkan slug, dan eager load user dan categorynya
         // cek apakah data discussion dengan slug tersebut tidak ada
         // jika tidak ada maka return page not found
+        // get answer berdasarkan discussion id
+        // sort berdasarkan created at menurun
+        // paginate 5
         // get semua category
         // return response
 
@@ -108,6 +112,10 @@ class DiscussionController extends Controller
             return abort(404);
         }
 
+        $discussionAnswers = Answer::where('discussion_id', $discussion->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
+
         $notLikedImage = url('assets/images/like.png');
         $likedImage = url('assets/images/liked.png');
 
@@ -116,6 +124,7 @@ class DiscussionController extends Controller
             'categories' => Category::all(),
             'likedImage' => $likedImage,
             'notLikedImage' => $notLikedImage,
+            'discussionAnswers' => $discussionAnswers,
         ]);
     }
 
