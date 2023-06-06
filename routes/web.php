@@ -24,6 +24,9 @@ Route::middleware('auth')->group(function () {
             
         Route::post('discussions/{discussion}/answer', 'AnswerController@store')
             ->name('discussions.answer.store');
+
+        Route::post('answers/{answer}/like', 'LikeController@answerLike')->name('answers.like.like');
+        Route::post('answers/{answer}/unlike', 'LikeController@answerUnlike')->name('answers.like.unlike');
     });
 });
 

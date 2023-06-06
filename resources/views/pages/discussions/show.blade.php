@@ -24,9 +24,9 @@
                                 <span id="discussion-like-count" class="fs-4 color-gray mb-1">{{ $discussion->likeCount }}</span>
                             </div>
                             <div class="col-11">
-                                <p>
+                                <div>
                                     {!! $discussion->content !!}
-                                </p>
+                                </div>
                                 <div class="mb-3">
                                     <a href="{{ route('discussions.categories.show', $discussion->category->slug) }}"><span class="badge rounded-pill text-bg-light">{{ $discussion->category->slug }}</span></a>
                                 </div>
@@ -86,15 +86,17 @@
                         <div class="card card-discussions">
                             <div class="row">
                                 <div class="col-1 d-flex flex-column justify-content-start align-items-center">
-                                    <a href="#">
-                                        <img src="{{ url('assets/images/like.png') }}" alt="Like" class="like-icon mb-1">
+                                    <a href="javascript:;" data-id="{{ $answer->id }}" 
+                                        data-liked="{{ $answer->liked() }}" 
+                                        class="answer-like d-flex flex-column justify-content-start align-items-center">
+                                        <img src="{{ $answer->liked() ? $likedImage : $notLikedImage }}" alt="Like" class="like-icon answer-like-icon mb-1">
+                                        <span class="answer-like-count fs-4 color-gray mb-1">{{ $answer->likeCount }}</span>
                                     </a>
-                                    <span class="fs-4 color-gray mb-1">12</span>
                                 </div>
                                 <div class="col-11">
-                                    <p>
+                                    <div>
                                         {!! $answer->answer !!}
-                                    </p>
+                                    </div>
                                     <div class="row align-items-end justify-content-end">
                                         <div class="col-5 col-lg-3 d-flex">
                                             <a href="#" class="card-discussions-show-avatar-wrapper flex-shrink-0 rounded-circle overflow-hidden me-1">
@@ -122,6 +124,8 @@
                                 Currently no answer yet.
                             </div>
                         @endforelse
+
+                        {{ $discussionAnswers->links() }}
 
                     </div>
 
@@ -241,6 +245,47 @@
             if (!confirm('Delete this discussion?')) {
                 event.preventDefault();
             }
+        });
+
+        $('.answer-like').click(function() {
+            // dapatkan id answernya
+            // dapatkan data apakah answer ini sudah pernah dilike oleh user
+            // tentukan route like ajax, berdasarkan dengan apakah ini sudah dilike atau belum
+            // lakukan proses ajax
+            // jika ajax berhasil maka dapatkan status jsonnya
+            // jika statusnya success maka isi counter like dengan data counter like dari jsonnya
+            // lalu kita ganti icon likenya berdasarkan dengan nilai variabel point 1
+            // jika user sebelumnya sudah me-like, maka ganti icon jadi notLikedImage
+            // jika user sebelumnya belum me-like, maka ganti icon jadi likedImage
+
+            var $this = $(this);
+            var id = $this.data('id');
+            var isLiked = $this.data('liked');
+            var likeRoute = isLiked ? '{{ url('') }}/answers/' + id + '/unlike'
+                : '{{ url('') }}/answers/' + id + '/like';
+
+            $.ajax({
+                method: 'POST',
+                url: likeRoute,
+                data: {
+                    '_token': '{{ csrf_token() }}'
+                }
+            })
+            .done(function(res) {
+                if (res.status === 'success') {
+                    console.log(res.data);
+                    $this.find('.answer-like-count').text(res.data.likeCount);
+
+                    if (isLiked) {
+                        $this.find('.answer-like-icon').attr('src', '{{ $notLikedImage }}');
+                    }
+                    else {
+                        $this.find('.answer-like-icon').attr('src', '{{ $likedImage }}');
+                    }
+
+                    $this.data('liked', !isLiked);
+                }
+            })
         });
     });
 </script>
