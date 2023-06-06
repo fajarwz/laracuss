@@ -98,6 +98,15 @@
                                         {!! $answer->answer !!}
                                     </div>
                                     <div class="row align-items-end justify-content-end">
+                                        <div class="col">
+                                            @if ($answer->user_id === auth()->id())
+                                                <span class="color-gray me-2">
+                                                    <a href="{{ route('answers.edit', $answer->id) }}">
+                                                        <small>Edit</small>
+                                                    </a>
+                                                </span>
+                                            @endif
+                                        </div>
                                         <div class="col-5 col-lg-3 d-flex">
                                             <a href="#" class="card-discussions-show-avatar-wrapper flex-shrink-0 rounded-circle overflow-hidden me-1">
                                                 <img src="{{ filter_var($answer->user->picture, FILTER_VALIDATE_URL)
