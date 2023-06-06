@@ -111,6 +111,35 @@ class AnswerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // get answer berdasarkan id
+        // cek apakah data answer dengan id tersebut tidak ada
+        // jika tidak ada maka return page not found
+        // cek apakah answer ini milik user yg sedang login
+        // jika bukan maka return page not found
+        // delete answer
+        // cek apakah delete berhasil
+        // jika berhasil maka return notif success dan redirect ke detail discussion dari answer tsb
+        // jika tidak berhasil maka lanjut ke bawah / ke kode abort 500
+
+        $answer = Answer::find($id);
+
+        if (!$answer) {
+            return abort(404);
+        }
+
+        $isOwnedByUser = $answer->user_id == auth()->id();
+
+        if (!$isOwnedByUser) {
+            return abort(404);
+        }
+
+        $delete = $answer->delete();
+
+        if ($delete) {
+            session()->flash('notif.success', 'Answer deleted successfully!');
+            return redirect()->route('discussions.show', $answer->discussion->slug);
+        }
+
+        return abort(500);
     }
 }
