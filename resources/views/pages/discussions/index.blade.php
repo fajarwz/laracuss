@@ -28,10 +28,11 @@
                         <div class="row">
                             <div class="col-12 col-lg-2 mb-1 mb-lg-0 d-flex flex-row flex-lg-column align-items-end">
                                 <div class="text-nowrap me-2 me-lg-0">
-                                    3 Likes
+                                    {{ $discussion->likeCount . ' ' . Str::plural('like', $discussion->likeCount) }}
                                 </div>
                                 <div class="text-nowrap color-gray">
-                                    9 Answers
+                                    {{ $discussion->answers->count() . ' ' 
+                                        . Str::plural('answer', $discussion->answers->count()) }}
                                 </div>
                             </div>
                             <div class="col-12 col-lg-10">
