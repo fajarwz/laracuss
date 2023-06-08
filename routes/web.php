@@ -50,9 +50,9 @@ Route::namespace('App\Http\Controllers\Auth')->group(function() {
     Route::post('sign-up', 'SignUpController@signUp')->name('auth.sign-up.sign-up');
 });
 
-Route::get('users/fajarwz', function () {
-    return view('pages.users.show');
-})->name('users.show');
+Route::namespace('App\Http\Controllers\My')->group(function() {
+    Route::resource('users', UserController::class)->only(['show']);
+});
 
 Route::get('users/fajarwz/edit', function () {
     return view('pages.users.form');
