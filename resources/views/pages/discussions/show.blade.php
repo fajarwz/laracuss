@@ -111,7 +111,7 @@
                                                     @csrf
                                                     @method('DELETE')
 
-                                                    <button type="submit" id="delete-answer" class="color-gray 
+                                                    <button type="submit" class="delete-answer color-gray 
                                                         btn btn-link text-decoration-none p-0 lh-1">
                                                         <small>Delete</small>
                                                     </button>
@@ -267,7 +267,7 @@
             }
         });
 
-        $('#delete-answer').click(function(event) {
+        $('.delete-answer').click(function(event) {
             if (!confirm('Delete this answer?')) {
                 event.preventDefault();
             }
