@@ -135,7 +135,7 @@
             alert.removeClass('d-none');
 
             var alertContainer = alert.find('.container');
-            alertContainer.first().text('Link to this discussion copied successfully');
+            alertContainer.first().text('Link to this profile copied successfully');
         })
     })
 </script>
