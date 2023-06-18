@@ -3,7 +3,7 @@
         $('#share-page').click(function() {
             var copyText = $('#current-url');
     
-            if (window.isSecureContext && naviagator.clipboard) {
+            if (window.isSecureContext && navigator.clipboard) {
                 copyToClipboard(copyText.val());
             }
             else {
@@ -22,7 +22,7 @@
         }
 
         function copyToClipboard(value) {
-            navigator.clipboard.writeText(copyText.val());
+            navigator.clipboard.writeText(value);
         }
 
         function unsecuredCopyToClipboard(value) {

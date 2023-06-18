@@ -33,7 +33,7 @@
                                 <div class="row align-items-start justify-content-between">
                                     <div class="col">
                                         <span class="color-gray me-2">
-                                            <a href="javascript:;" id="share-discussion"><small>Share</small></a>
+                                            <a href="javascript:;" id="share-page"><small>Share</small></a>
                                             <input type="text" value="{{ route('discussions.show', $discussion->slug) }}" id="current-url" class="d-none">
                                         </span>
 
