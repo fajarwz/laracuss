@@ -122,21 +122,5 @@
 @endsection
 
 @section('after-script')
-<script>
-    $(document).ready(function() {
-        $('#share-profile').click(function() {
-            var copyText = $('#current-url');
-
-            copyText[0].select();
-            copyText[0].setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.val());
-
-            var alert = $('#alert');
-            alert.removeClass('d-none');
-
-            var alertContainer = alert.find('.container');
-            alertContainer.first().text('Link to this profile copied successfully');
-        })
-    })
-</script>
+@include('partials.copy-link-to-current-page')
 @endsection
